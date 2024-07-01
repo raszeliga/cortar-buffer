@@ -443,7 +443,7 @@ class CortarBuffer:
                 contagem_pontos = feature['NUMPOINTS']
                 contagem_pontos = int(contagem_pontos)
             
-            QMessageBox.information(self.iface.mainWindow(),"Informações","A camada %s tem %d feições e sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área de influência engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name()))
+            QMessageBox.information(self.iface.mainWindow(),"Informações","A camada %s tem %d feições. Sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name()))
            
             # Obtem a camada para a qual deseja centralizar o zoom
             layer = QgsProject.instance().mapLayersByName('Bordeada')[0]
@@ -499,7 +499,7 @@ class CortarBuffer:
 
             # Exibindo um relatório
             output_file = open('C:/Users/rafae/OneDrive/PósGrad/2023 PPGCG/Disciplinas/2024/7009 - Desenvolvimento de Aplicações/TrabFinal/Relatorio.txt', 'w')
-            conteudo = "A camada %s tem %d feições e sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área de influência engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name())
+            conteudo = "A camada %s tem %d feições. Sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name())
             conteudo = str(conteudo)
             output_file.write(conteudo)
             output_file.close()
