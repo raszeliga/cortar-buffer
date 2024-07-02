@@ -29,7 +29,7 @@ from qgis.core import QgsFillSymbol, QgsLineSymbol
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 from qgis.PyQt.QtWidgets import QMessageBox
-from PyQt5.QtWidgets import QApplication, QMainWindow, QSpinBox, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QSpinBox, QPushButton, QFileDialog
 from PyQt5.QtGui import QColor
 from qgis import processing
 from qgis.utils import iface
@@ -498,9 +498,29 @@ class CortarBuffer:
             move_layer_to_position('Pontos_Sobrepostos', 2)
 
             # Exibindo um relatório
-            output_file = open('C:/Users/rafae/OneDrive/PósGrad/2023 PPGCG/Disciplinas/2024/7009 - Desenvolvimento de Aplicações/TrabFinal/Relatorio.txt', 'w')
-            conteudo = "A camada %s tem %d feições. Sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name())
-            conteudo = str(conteudo)
-            output_file.write(conteudo)
-            output_file.close()
+            # Função para salvar o relatório
+            def salvar_relatorio():
+                # Abrir uma janela de diálogo para o usuário escolher o local de salvamento
+                options = QFileDialog.Options()
+#                options |= QFileDialog.DontUseNativeDialog
+                file_path, _ = QFileDialog.getSaveFileName(None, "Salvar Relatório", "", "Text Files (*.txt);;All Files (*)", options=options)
+
+                if file_path:
+                    # Exibindo um relatório
+                    with open(file_path, 'w') as output_file:
+                        conteudo = "A camada %s tem %d feições. Sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área engloba %d feições da camada %s" % (
+                            layerPontos.name(), layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name()
+                        )
+                        conteudo = str(conteudo)
+                        output_file.write(conteudo)
+
+            # Chamar a função para salvar o relatório
+            salvar_relatorio()
+
+
+#            output_file = open('C:/Users/rafae/OneDrive/PósGrad/2023 PPGCG/Disciplinas/2024/7009 - Desenvolvimento de Aplicações/TrabFinal/Relatorio.txt', 'w')
+#            conteudo = "A camada %s tem %d feições. Sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name())
+#            conteudo = str(conteudo)
+#            output_file.write(conteudo)
+#            output_file.close()
 
