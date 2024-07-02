@@ -491,12 +491,6 @@ class CortarBuffer:
                     root.insertChildNode(position, layer_node.clone())
                     root.removeChildNode(layer_node)
 
-
-            # Posição desejada (0 para topo, 1 para segundo, etc.)
-            move_layer_to_position('Ruas_Atingidas', 0)
-            move_layer_to_position('Area_Cobertura', 1)
-            move_layer_to_position('Pontos_Sobrepostos', 2)
-
             # Exibindo um relatório
             # Função para salvar o relatório
             def salvar_relatorio():
@@ -517,6 +511,10 @@ class CortarBuffer:
             # Chamar a função para salvar o relatório
             salvar_relatorio()
 
+            # Posição desejada (0 para topo, 1 para segundo, etc.)
+            move_layer_to_position('Ruas_Atingidas', 0)
+            move_layer_to_position('Area_Cobertura', 1)
+            move_layer_to_position('Pontos_Sobrepostos', 2)
 
 #            output_file = open('C:/Users/rafae/OneDrive/PósGrad/2023 PPGCG/Disciplinas/2024/7009 - Desenvolvimento de Aplicações/TrabFinal/Relatorio.txt', 'w')
 #            conteudo = "A camada %s tem %d feições. Sua área de influência especificada ocupa %.2f km² e sobrepõe %.2f km de vias. Essa área engloba %d feições da camada %s" %(layerPontos.name(),layerPontos.featureCount(), area, comp, contagem_pontos, layerContagens.name())
